@@ -1,23 +1,37 @@
 package lk.ijse.dep13.backendexpensemanager.api;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import lk.ijse.dep13.backendexpensemanager.dto.UserLoginDTO;
+import lk.ijse.dep13.backendexpensemanager.entity.User;
+import lk.ijse.dep13.backendexpensemanager.service.AuthenticationService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
+import java.net.http.HttpRequest;
 
 @RestController
 @RequestMapping("/auth")
 public class UserAuthenticationHttpController {
 
     @Autowired
-    private Connection connection;
+    AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public String login(){
-        return "admin";
+    public User login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
+        User user = authenticationService.login(userLoginDTO.getUserName(), userLoginDTO.getPassword());
+        request.getSession().setAttribute("user", user.getUserName());
+        return user;
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/logout")
-    public String logout(){
-        return "logout";
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); /// why false
+        if (session != null) {
+            session.invalidate();
+        }
     }
 }
