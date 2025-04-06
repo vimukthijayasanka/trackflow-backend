@@ -11,7 +11,7 @@ public class IncomeExpense {
     private int id;
     private String date;
     private String time;
-    private String category;
+    private String type;
     private String amount;
     private String description;
 }

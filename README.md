@@ -1,6 +1,6 @@
 # 💰 Expense Tracker API
 
-A simple RESTful API for tracking income and expenses, built with **Spring Boot**. This project is designed to demonstrate full CRUD operations and user authentication functionality, suitable for integration with a frontend like Angular.
+A simple RESTful API for tracking income and expenses, built with **Spring**. This project is designed to demonstrate full CRUD operations and user authentication functionality, suitable for integration with a frontend like Angular.
 
 ---
 
