@@ -70,4 +70,11 @@ public class ProfileActivityService {
         String msg = String.format("%s's profile updated successfully", user.getUserName());
         return ResponseEntity.ok(msg);
     }
+
+    public ResponseEntity<String> deleteUser(String userName) {
+        userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        userRepo.deleteById(userName);
+        String msg = String.format("%s's profile deleted successfully", userName);
+        return ResponseEntity.ok(msg);
+    }
 }

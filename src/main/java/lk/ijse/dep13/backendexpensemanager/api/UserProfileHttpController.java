@@ -35,7 +35,7 @@ public class UserProfileHttpController {
     }
 
     @DeleteMapping("/me")
-    public String deleteUser(){
-        return "deleteUser";
+    public ResponseEntity<String> deleteUser(@SessionAttribute(value = "user") String userName){
+        return profileActivityService.deleteUser(userName);
     }
 }
