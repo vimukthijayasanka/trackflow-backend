@@ -1,4 +1,4 @@
-package lk.ijse.dep13.backendexpensemanager.model;
+package lk.ijse.dep13.backendexpensemanager.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
