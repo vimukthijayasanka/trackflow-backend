@@ -72,8 +72,8 @@ public class ProfileActivityService {
     }
 
     public ResponseEntity<String> deleteUser(String userName) {
-        userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
-        userRepo.deleteById(userName);
+        User user = userRepo.findByUserName(userName).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        userRepo.delete(user);
         String msg = String.format("%s's profile deleted successfully", userName);
         return ResponseEntity.ok(msg);
     }
