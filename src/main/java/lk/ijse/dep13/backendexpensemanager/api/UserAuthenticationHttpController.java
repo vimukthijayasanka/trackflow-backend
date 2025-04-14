@@ -23,14 +23,14 @@ public class UserAuthenticationHttpController {
     @PostMapping("/login")
     public UserLoginDTO login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
         UserLoginDTO user = authenticationService.login(userLoginDTO);
-        request.getSession().setAttribute("user", user.getUserName());
+        request.getSession().setAttribute("user", user.getUserName()); // created Session for User
         return user;
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/logout")
     public void logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); /// why false
+        HttpSession session = request.getSession(false); // checking session is available
         if (session != null) {
             session.invalidate();
         }
