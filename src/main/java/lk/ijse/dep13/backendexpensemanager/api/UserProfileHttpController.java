@@ -29,9 +29,9 @@ public class UserProfileHttpController {
         return profileActivityService.getInfoUser(userName);
     }
 
-    @PutMapping("/me")
-    public String updateInfoUser(){
-        return "updateInfoUser";
+    @PutMapping(value = "/me", consumes = "application/json")
+    public ResponseEntity<String> updateInfoUser(@SessionAttribute(value = "user") String userName, @RequestBody UserUpdateDTO userUpdateDTO) {
+        return profileActivityService.updateInfoUser(userName, userUpdateDTO);
     }
 
     @DeleteMapping("/me")

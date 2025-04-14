@@ -47,4 +47,27 @@ public class ProfileActivityService {
         userDTO.setProfilePicUrl(user.getProfilePictureUrl());
         return userDTO;
     }
+
+    public ResponseEntity<String> updateInfoUser(String userName, UserUpdateDTO userUpdateDTO) {
+        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        if (userUpdateDTO.getFirstName() != null) {
+            user.setFirstName(userUpdateDTO.getFirstName());
+        }
+        if (userUpdateDTO.getLastName() != null) {
+            user.setLastName(userUpdateDTO.getLastName());
+        }
+        if (userUpdateDTO.getEmail() != null) {
+            user.setEmail(userUpdateDTO.getEmail());
+        }
+        if (userUpdateDTO.getDob() != null) {
+            user.setDob(userUpdateDTO.getDob());
+        }
+        if (userUpdateDTO.getProfilePicUrl() != null) {
+            user.setProfilePictureUrl(userUpdateDTO.getProfilePicUrl());
+        }
+        userRepo.save(user);
+
+        String msg = String.format("%s's profile updated successfully", user.getUserName());
+        return ResponseEntity.ok(msg);
+    }
 }
