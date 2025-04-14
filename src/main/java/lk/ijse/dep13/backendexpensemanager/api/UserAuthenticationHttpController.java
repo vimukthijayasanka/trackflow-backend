@@ -2,6 +2,7 @@ package lk.ijse.dep13.backendexpensemanager.api;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserLoginDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
 import lk.ijse.dep13.backendexpensemanager.service.AuthenticationService;
@@ -20,8 +21,8 @@ public class UserAuthenticationHttpController {
     AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public User login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
-        User user = authenticationService.login(userLoginDTO.getUserName(), userLoginDTO.getPassword());
+    public UserLoginDTO login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
+        UserLoginDTO user = authenticationService.login(userLoginDTO);
         request.getSession().setAttribute("user", user.getUserName());
         return user;
     }

@@ -1,6 +1,8 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lk.ijse.dep13.backendexpensemanager.dto.UserRegisterDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.UserUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
 import lk.ijse.dep13.backendexpensemanager.repository.UserRepo;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class ProfileActivityService {
@@ -30,5 +33,9 @@ public class ProfileActivityService {
             userRepo.save(user);
             return ResponseEntity.status(HttpStatus.CREATED).body("Account created successfully");
         }
+    }
+
+    public User getInfoUser(String userName) {
+        return userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
     }
 }

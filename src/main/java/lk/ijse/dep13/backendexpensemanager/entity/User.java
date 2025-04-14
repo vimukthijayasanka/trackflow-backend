@@ -5,9 +5,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.processing.SQL;
 
 import java.time.LocalDate;
 
@@ -16,9 +18,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table (name = "user")
-public class User {
+public class User{
     @Id
-    @Column(name = "user_name")  // matches DB exactly
+    @Column(name = "user_name")
     private String userName;
 
     @Column(name = "first_name")
