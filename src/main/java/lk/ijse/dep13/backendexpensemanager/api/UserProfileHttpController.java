@@ -25,17 +25,17 @@ public class UserProfileHttpController {
     }
 
     @GetMapping("/me")
-    public User getInfoUser(@SessionAttribute(value = "user")String userName) {
+    public UserDTO getInfoUser(@SessionAttribute(value = "user")String userName) {
         return profileActivityService.getInfoUser(userName);
     }
 
-    @PutMapping("/me")
-    public String updateInfoUser(){
-        return "updateInfoUser";
+    @PutMapping(value = "/me", consumes = "application/json")
+    public ResponseEntity<String> updateInfoUser(@SessionAttribute(value = "user") String userName, @RequestBody UserUpdateDTO userUpdateDTO) {
+        return profileActivityService.updateInfoUser(userName, userUpdateDTO);
     }
 
     @DeleteMapping("/me")
-    public String deleteUser(){
-        return "deleteUser";
+    public ResponseEntity<String> deleteUser(@SessionAttribute(value = "user") String userName){
+        return profileActivityService.deleteUser(userName);
     }
 }

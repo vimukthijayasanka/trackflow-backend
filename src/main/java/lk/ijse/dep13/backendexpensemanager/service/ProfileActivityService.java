@@ -1,6 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserRegisterDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
@@ -35,7 +36,45 @@ public class ProfileActivityService {
         }
     }
 
-    public User getInfoUser(String userName) {
-        return userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+    public UserDTO getInfoUser(String userName) {
+        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserName(user.getUserName());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setDob(user.getDob());
+        userDTO.setProfilePicUrl(user.getProfilePictureUrl());
+        return userDTO;
+    }
+
+    public ResponseEntity<String> updateInfoUser(String userName, UserUpdateDTO userUpdateDTO) {
+        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        if (userUpdateDTO.getFirstName() != null) {
+            user.setFirstName(userUpdateDTO.getFirstName());
+        }
+        if (userUpdateDTO.getLastName() != null) {
+            user.setLastName(userUpdateDTO.getLastName());
+        }
+        if (userUpdateDTO.getEmail() != null) {
+            user.setEmail(userUpdateDTO.getEmail());
+        }
+        if (userUpdateDTO.getDob() != null) {
+            user.setDob(userUpdateDTO.getDob());
+        }
+        if (userUpdateDTO.getProfilePicUrl() != null) {
+            user.setProfilePictureUrl(userUpdateDTO.getProfilePicUrl());
+        }
+        userRepo.save(user);
+
+        String msg = String.format("%s's profile updated successfully", user.getUserName());
+        return ResponseEntity.ok(msg);
+    }
+
+    public ResponseEntity<String> deleteUser(String userName) {
+        User user = userRepo.findByUserName(userName).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        userRepo.delete(user);
+        String msg = String.format("%s's profile deleted successfully", userName);
+        return ResponseEntity.ok(msg);
     }
 }

@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserUpdateDTO {
-    private String username;
-    private String firstname;
-    private String lastname;
+    private String userName;
+    private String firstName;
+    private String lastName;
     private String email;
     private LocalDate dob;
     private String password;
