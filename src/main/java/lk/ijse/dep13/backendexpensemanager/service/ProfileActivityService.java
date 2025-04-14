@@ -1,6 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserRegisterDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
@@ -35,7 +36,15 @@ public class ProfileActivityService {
         }
     }
 
-    public User getInfoUser(String userName) {
-        return userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+    public UserDTO getInfoUser(String userName) {
+        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserName(user.getUserName());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setDob(user.getDob());
+        userDTO.setProfilePicUrl(user.getProfilePictureUrl());
+        return userDTO;
     }
 }

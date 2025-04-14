@@ -25,7 +25,7 @@ public class UserProfileHttpController {
     }
 
     @GetMapping("/me")
-    public User getInfoUser(@SessionAttribute(value = "user")String userName) {
+    public UserDTO getInfoUser(@SessionAttribute(value = "user")String userName) {
         return profileActivityService.getInfoUser(userName);
     }
 
