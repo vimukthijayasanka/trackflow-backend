@@ -118,8 +118,12 @@ public class IncomeExpenseService {
         );
     }
 
-    public void deleteIncomeExpense(IncomeExpense incomeExpense) {
+    public ResponseEntity<?> deleteIncomeExpense(Long id, String userName) {
+        IncomeExpense transaction = incomeExpenseRepo.findByIdAndUserName(id, userName)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found or unauthorized"));
 
+        incomeExpenseRepo.delete(transaction);
+        return ResponseEntity.noContent().build();
     }
 
 }

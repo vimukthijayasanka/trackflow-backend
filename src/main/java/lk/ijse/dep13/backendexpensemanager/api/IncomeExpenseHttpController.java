@@ -41,7 +41,7 @@ public class IncomeExpenseHttpController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteIncomeExpense(@PathVariable("id") Long id) {
-        return "delete transaction with ID: " + id;
+    public ResponseEntity<?> deleteIncomeExpense(@SessionAttribute(value="user")String userName, @PathVariable("id") Long id) {
+        return incomeExpenseService.deleteIncomeExpense(id, userName);
     }
 }
