@@ -3,6 +3,7 @@ package lk.ijse.dep13.backendexpensemanager.service;
 import lk.ijse.dep13.backendexpensemanager.dto.ApiResponse;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.IncomeExpense;
 import lk.ijse.dep13.backendexpensemanager.repository.IncomeExpenseRepo;
 import lk.ijse.dep13.backendexpensemanager.repository.UserRepo;
@@ -66,8 +67,43 @@ public class IncomeExpenseService {
        }).toList();
     }
 
-    public void updateIncomeExpense(IncomeExpense incomeExpense) {
+    public IncomeExpenseAllInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
+        if (!userRepo.existsById(updateDTO.getUserName())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
+        }
 
+        IncomeExpense incomeExpense = incomeExpenseRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found"));
+
+        if (!incomeExpense.getUserName().equals(updateDTO.getUserName())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You are not allowed to update this record");
+        }
+
+        if (updateDTO.getType() != null) {
+            incomeExpense.setType(updateDTO.getType());
+        }
+        if (updateDTO.getDescription() != null) {
+            incomeExpense.setDescription(updateDTO.getDescription());
+        }
+        if (updateDTO.getAmount() != null) {
+            incomeExpense.setAmount(updateDTO.getAmount());
+        }
+        if (updateDTO.getTransactionDate() != null) {
+            incomeExpense.setTransactionDate(updateDTO.getTransactionDate());
+        }
+
+        incomeExpense = incomeExpenseRepo.save(incomeExpense);
+
+        return new IncomeExpenseAllInfoDTO(
+                (long) incomeExpense.getId(),
+                incomeExpense.getUserName(),
+                incomeExpense.getType(),
+                incomeExpense.getDescription(),
+                incomeExpense.getAmount(),
+                incomeExpense.getTransactionDate(),
+                incomeExpense.getCreatedAt(),
+                incomeExpense.getUpdatedAt()
+        );
     }
 
     public void deleteIncomeExpense(IncomeExpense incomeExpense) {

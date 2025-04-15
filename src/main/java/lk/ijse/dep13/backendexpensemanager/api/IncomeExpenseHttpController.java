@@ -1,17 +1,20 @@
 package lk.ijse.dep13.backendexpensemanager.api;
 
-import lk.ijse.dep13.backendexpensemanager.dto.ApiResponse;
+import jakarta.validation.Valid;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.service.IncomeExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
+@Validated
 public class IncomeExpenseHttpController {
 
     @Autowired
@@ -33,8 +36,8 @@ public class IncomeExpenseHttpController {
     }
 
     @PatchMapping(value = "/{id}", consumes = "application/json")
-    public String updateIncomeExpense(@PathVariable("id") Long id) {
-        return "update transaction with ID: " + id;
+    public IncomeExpenseAllInfoDTO updateIncomeExpense(@PathVariable("id") Long id,@Valid @RequestBody IncomeExpenseUpdateDTO updateDTO) {
+        return incomeExpenseService.updateIncomeExpense(id, updateDTO);
     }
 
     @DeleteMapping("/{id}")
