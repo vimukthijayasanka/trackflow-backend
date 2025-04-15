@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface IncomeExpenseRepo extends JpaRepository<IncomeExpense, Long> {
 List<IncomeExpense> findIncomeExpenseByUserName(String userName);
+    Optional<IncomeExpense> findByIdAndUserName(Long id, String userName);
 }

@@ -1,7 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
 import lk.ijse.dep13.backendexpensemanager.dto.ApiResponse;
-import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.IncomeExpense;
@@ -15,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -45,17 +42,32 @@ public class IncomeExpenseService {
                 .body(new ApiResponse("Successfully created your %s record".formatted(incomeExpenseDTO.getType())));
     }
 
-    public void getIncomeExpense(IncomeExpense incomeExpense) {
+    public IncomeExpenseInfoDTO getIncomeExpense(Long id, String userName) {
+        if (!userRepo.existsById(userName)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
+        }
+        IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, userName)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found for this user"));
 
+        return new IncomeExpenseInfoDTO(
+                id,
+                incomeExpense.getUserName(),
+                incomeExpense.getType(),
+                incomeExpense.getDescription(),
+                incomeExpense.getAmount(),
+                incomeExpense.getTransactionDate(),
+                incomeExpense.getCreatedAt(),
+                incomeExpense.getUpdatedAt()
+        );
     }
 
-    public List<IncomeExpenseAllInfoDTO> getAllIncomeExpense(String userName) {
+    public List<IncomeExpenseInfoDTO> getAllIncomeExpense(String userName) {
         if (!userRepo.existsById(userName)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
         }
         List<IncomeExpense> incomeExpenses = incomeExpenseRepo.findIncomeExpenseByUserName(userName);
        return incomeExpenses.stream().map(incomeExpense -> {
-           IncomeExpenseAllInfoDTO dto = new IncomeExpenseAllInfoDTO();
+           IncomeExpenseInfoDTO dto = new IncomeExpenseInfoDTO();
            dto.setUserName(incomeExpense.getUserName());
            dto.setType(incomeExpense.getType());
            dto.setDescription(incomeExpense.getDescription());
@@ -67,7 +79,7 @@ public class IncomeExpenseService {
        }).toList();
     }
 
-    public IncomeExpenseAllInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
+    public IncomeExpenseInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
         if (!userRepo.existsById(updateDTO.getUserName())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
         }
@@ -94,7 +106,7 @@ public class IncomeExpenseService {
 
         incomeExpense = incomeExpenseRepo.save(incomeExpense);
 
-        return new IncomeExpenseAllInfoDTO(
+        return new IncomeExpenseInfoDTO(
                 (long) incomeExpense.getId(),
                 incomeExpense.getUserName(),
                 incomeExpense.getType(),

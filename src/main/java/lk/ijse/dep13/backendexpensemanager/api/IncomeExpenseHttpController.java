@@ -1,7 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.api;
 
 import jakarta.validation.Valid;
-import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.service.IncomeExpenseService;
@@ -26,17 +26,17 @@ public class IncomeExpenseHttpController {
     }
 
     @GetMapping("/{id}")
-    public String getIncomeExpense(@PathVariable("id") Long id) {
-        return "get transaction with ID: " + id;
+    public IncomeExpenseInfoDTO getIncomeExpense(@PathVariable("id") Long id, @SessionAttribute(value="user")String userName) {
+        return incomeExpenseService.getIncomeExpense(id, userName);
     }
 
     @GetMapping
-    public List<IncomeExpenseAllInfoDTO> getAllIncomeExpense(@SessionAttribute(value="user")String userName) {
+    public List<IncomeExpenseInfoDTO> getAllIncomeExpense(@SessionAttribute(value="user")String userName) {
         return incomeExpenseService.getAllIncomeExpense(userName);
     }
 
     @PatchMapping(value = "/{id}", consumes = "application/json")
-    public IncomeExpenseAllInfoDTO updateIncomeExpense(@PathVariable("id") Long id,@Valid @RequestBody IncomeExpenseUpdateDTO updateDTO) {
+    public IncomeExpenseInfoDTO updateIncomeExpense(@PathVariable("id") Long id, @Valid @RequestBody IncomeExpenseUpdateDTO updateDTO) {
         return incomeExpenseService.updateIncomeExpense(id, updateDTO);
     }
 

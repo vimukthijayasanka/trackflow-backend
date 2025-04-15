@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IncomeExpenseAllInfoDTO {
+public class IncomeExpenseInfoDTO {
     private Long id;
     private String userName;
     private TransactionType type;
