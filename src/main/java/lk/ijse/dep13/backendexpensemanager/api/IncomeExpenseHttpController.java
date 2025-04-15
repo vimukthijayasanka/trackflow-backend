@@ -1,11 +1,14 @@
 package lk.ijse.dep13.backendexpensemanager.api;
 
 import lk.ijse.dep13.backendexpensemanager.dto.ApiResponse;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
 import lk.ijse.dep13.backendexpensemanager.service.IncomeExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
@@ -25,8 +28,8 @@ public class IncomeExpenseHttpController {
     }
 
     @GetMapping
-    public String getAllIncomeExpense() {
-        return "get all transactions";
+    public List<IncomeExpenseAllInfoDTO> getAllIncomeExpense(@SessionAttribute(value="user")String userName) {
+        return incomeExpenseService.getAllIncomeExpense(userName);
     }
 
     @PatchMapping(value = "/{id}", consumes = "application/json")

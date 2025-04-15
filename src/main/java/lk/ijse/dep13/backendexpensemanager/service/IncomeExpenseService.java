@@ -1,6 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
 import lk.ijse.dep13.backendexpensemanager.dto.ApiResponse;
+import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseAllInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.IncomeExpense;
 import lk.ijse.dep13.backendexpensemanager.repository.IncomeExpenseRepo;
@@ -13,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -43,8 +48,22 @@ public class IncomeExpenseService {
 
     }
 
-    public void getAllIncomeExpense() {
-
+    public List<IncomeExpenseAllInfoDTO> getAllIncomeExpense(String userName) {
+        if (!userRepo.existsById(userName)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
+        }
+        List<IncomeExpense> incomeExpenses = incomeExpenseRepo.findIncomeExpenseByUserName(userName);
+       return incomeExpenses.stream().map(incomeExpense -> {
+           IncomeExpenseAllInfoDTO dto = new IncomeExpenseAllInfoDTO();
+           dto.setUserName(incomeExpense.getUserName());
+           dto.setType(incomeExpense.getType());
+           dto.setDescription(incomeExpense.getDescription());
+           dto.setAmount(incomeExpense.getAmount());
+           dto.setTransactionDate(incomeExpense.getTransactionDate());
+           dto.setCreatedAt(incomeExpense.getCreatedAt());
+           dto.setUpdatedAt(incomeExpense.getUpdatedAt());
+           return dto;
+       }).toList();
     }
 
     public void updateIncomeExpense(IncomeExpense incomeExpense) {
