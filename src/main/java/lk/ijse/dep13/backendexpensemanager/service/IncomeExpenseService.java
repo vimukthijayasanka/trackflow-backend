@@ -22,14 +22,8 @@ import java.util.List;
 public class IncomeExpenseService {
     @Autowired
     private IncomeExpenseRepo incomeExpenseRepo;
-    @Autowired
-    private UserRepo userRepo;
 
     public ResponseEntity<ApiResponse> createIncomeExpense(String userName, IncomeExpenseDTO incomeExpenseDTO) {
-        if (!userRepo.existsById(userName)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
-        }
-
         IncomeExpense incomeExpense = new IncomeExpense();
         incomeExpense.setUserName(userName);
         incomeExpense.setType(incomeExpenseDTO.getType());
@@ -43,9 +37,6 @@ public class IncomeExpenseService {
     }
 
     public IncomeExpenseInfoDTO getIncomeExpense(Long id, String userName) {
-        if (!userRepo.existsById(userName)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
-        }
         IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, userName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found for this user"));
 
@@ -62,9 +53,6 @@ public class IncomeExpenseService {
     }
 
     public List<IncomeExpenseInfoDTO> getAllIncomeExpense(String userName) {
-        if (!userRepo.existsById(userName)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
-        }
         List<IncomeExpense> incomeExpenses = incomeExpenseRepo.findIncomeExpenseByUserName(userName);
        return incomeExpenses.stream().map(incomeExpense -> {
            IncomeExpenseInfoDTO dto = new IncomeExpenseInfoDTO();
@@ -80,10 +68,6 @@ public class IncomeExpenseService {
     }
 
     public IncomeExpenseInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
-        if (!userRepo.existsById(updateDTO.getUserName())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username");
-        }
-
         IncomeExpense incomeExpense = incomeExpenseRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found"));
 

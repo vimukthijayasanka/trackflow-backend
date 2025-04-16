@@ -37,7 +37,7 @@ public class ProfileActivityService {
     }
 
     public UserDTO getInfoUser(String userName) {
-        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        User user = userRepo.findById(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
         UserDTO userDTO = new UserDTO();
         userDTO.setUserName(user.getUserName());
         userDTO.setFirstName(user.getFirstName());
@@ -49,7 +49,7 @@ public class ProfileActivityService {
     }
 
     public ResponseEntity<String> updateInfoUser(String userName, UserUpdateDTO userUpdateDTO) {
-        User user = userRepo.findByUserName(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        User user = userRepo.findById(userName).orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
         if (userUpdateDTO.getFirstName() != null) {
             user.setFirstName(userUpdateDTO.getFirstName());
         }
@@ -72,7 +72,7 @@ public class ProfileActivityService {
     }
 
     public ResponseEntity<String> deleteUser(String userName) {
-        User user = userRepo.findByUserName(userName).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
+        User user = userRepo.findById(userName).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
         userRepo.delete(user);
         String msg = String.format("%s's profile deleted successfully", userName);
         return ResponseEntity.ok(msg);

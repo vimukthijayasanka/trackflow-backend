@@ -1,5 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 import lk.ijse.dep13.backendexpensemanager.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +16,11 @@ import java.time.LocalDate;
 
 public class IncomeExpenseDTO {
     private String userName;
+    @NotBlank(message = "Transaction type is required")
     private TransactionType type;
+    @NotBlank(message = "Description is required")
     private String description;
+    @DecimalMin(value = "0.0", inclusive = false, message = "Amount should be positive")
     private BigDecimal amount;
     private LocalDate transactionDate;
 }
