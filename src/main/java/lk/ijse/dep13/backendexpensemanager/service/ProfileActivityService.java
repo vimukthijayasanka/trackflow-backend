@@ -1,10 +1,11 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserRegisterDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
+import lk.ijse.dep13.backendexpensemanager.enums.AuditAction;
+import lk.ijse.dep13.backendexpensemanager.enums.AuditLogCategory;
 import lk.ijse.dep13.backendexpensemanager.repository.UserRepo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ProfileActivityService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private AuditLogService auditLogService;
+
     public ResponseEntity<String> createAccount(UserRegisterDTO userRegisterDTO) {
         if (userRepo.existsByUserName(userRegisterDTO.getUserName())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User name already exists");
@@ -32,6 +36,16 @@ public class ProfileActivityService {
             user.setDob(userRegisterDTO.getDob());
             user.setProfilePictureUrl(userRegisterDTO.getProfilePicUrl());
             userRepo.save(user);
+
+            // log create
+            auditLogService.log(
+                    user.getUserName(),
+                    AuditAction.CREATE,
+                    AuditLogCategory.AUTH,
+                    user.getUserName(),
+                    "Create the user - " + user.getUserName()
+            );
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Account created successfully");
         }
     }
@@ -45,6 +59,16 @@ public class ProfileActivityService {
         userDTO.setEmail(user.getEmail());
         userDTO.setDob(user.getDob());
         userDTO.setProfilePicUrl(user.getProfilePictureUrl());
+
+        //log read
+        auditLogService.log(
+                user.getUserName(),
+                AuditAction.READ,
+                AuditLogCategory.USER_PROFILE,
+                "NULL",
+                "Read the profile information of - " + user.getUserName()
+        );
+
         return userDTO;
     }
 
@@ -67,6 +91,15 @@ public class ProfileActivityService {
         }
         userRepo.save(user);
 
+        // log update
+        auditLogService.log(
+                user.getUserName(),
+                AuditAction.UPDATE,
+                AuditLogCategory.USER_PROFILE,
+                "NULL",
+                "Update the profile information of - " + user.getUserName()
+        );
+
         String msg = String.format("%s's profile updated successfully", user.getUserName());
         return ResponseEntity.ok(msg);
     }
@@ -74,6 +107,16 @@ public class ProfileActivityService {
     public ResponseEntity<String> deleteUser(String userName) {
         User user = userRepo.findById(userName).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username"));
         userRepo.delete(user);
+
+        // log delete
+        auditLogService.log(
+                user.getUserName(),
+                AuditAction.DELETE,
+                AuditLogCategory.USER_PROFILE,
+                "NULL",
+                "Delete the profile information of - " + user.getUserName()
+        );
+
         String msg = String.format("%s's profile deleted successfully", userName);
         return ResponseEntity.ok(msg);
     }
