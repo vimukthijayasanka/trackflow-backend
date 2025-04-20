@@ -100,12 +100,8 @@ public class IncomeExpenseService {
     }
 
     public IncomeExpenseInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
-        IncomeExpense incomeExpense = incomeExpenseRepo.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found"));
-
-        if (!incomeExpense.getUserName().equals(updateDTO.getUserName())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You are not allowed to update this record");
-        }
+        IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, updateDTO.getUserName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found or access denied"));
 
         if (updateDTO.getType() != null) {
             incomeExpense.setType(updateDTO.getType());
