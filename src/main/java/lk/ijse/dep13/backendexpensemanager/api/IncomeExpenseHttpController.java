@@ -21,7 +21,7 @@ public class IncomeExpenseHttpController {
     IncomeExpenseService incomeExpenseService;
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<?> createIncomeExpense(@SessionAttribute(value="user")String user, @RequestBody IncomeExpenseDTO incomeExpenseDTO) {
+    public ResponseEntity<?> createIncomeExpense(@SessionAttribute(value="user")String user,@Valid @RequestBody IncomeExpenseDTO incomeExpenseDTO) {
         return incomeExpenseService.createIncomeExpense(user, incomeExpenseDTO);
     }
 

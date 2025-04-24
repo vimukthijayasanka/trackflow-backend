@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@Validated
 public class IncomeExpenseService {
     @Autowired
     private IncomeExpenseRepo incomeExpenseRepo;

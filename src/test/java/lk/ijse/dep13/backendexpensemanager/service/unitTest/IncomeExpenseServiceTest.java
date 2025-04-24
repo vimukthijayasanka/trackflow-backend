@@ -1,5 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.service.unitTest;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseInfoDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseUpdateDTO;
@@ -25,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -53,7 +56,6 @@ public class IncomeExpenseServiceTest {
     void testCreateIncomeExpense_Success () {
         String username = "Joel_Miller";
         IncomeExpenseDTO incomeExpenseDTO = new IncomeExpenseDTO(username,TransactionType.INCOME,"Salary",new BigDecimal("100000.00"), LocalDate.now());
-
         ResponseEntity<?> response = incomeExpenseService.createIncomeExpense(username, incomeExpenseDTO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -61,6 +63,22 @@ public class IncomeExpenseServiceTest {
         verify(auditLogService).log(eq(username), any(), any(), any(), contains("Created"));
     }
 
+    @Test
+    void testCreateIncomeExpense_NegativeAmount_ShouldFailValidation() {
+        String username = "Joel_Miller";
+        IncomeExpenseDTO dto = new IncomeExpenseDTO(
+                username,
+                TransactionType.INCOME,
+                "Salary",
+                new BigDecimal("-1000"),
+                LocalDate.now()
+        );
+
+        assertThrows(ConstraintViolationException.class, () -> {
+            incomeExpenseService.createIncomeExpense(username, dto);
+        });
+    }
+    
     @Test
     void testGetIncomeExpense_Success() {
         String username = "Joel_Miller";
