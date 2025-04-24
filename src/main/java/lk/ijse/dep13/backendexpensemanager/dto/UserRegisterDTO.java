@@ -1,6 +1,7 @@
 package lk.ijse.dep13.backendexpensemanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,10 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "User registration DTO")
 public class UserRegisterDTO {
+
+    @Schema(description = "Username (5 - 20 alphanumeric characters", example = "vimukthi")
     @Pattern(regexp = "^[a-zA-Z0-9_]{5,20}$", message = "Username should be alphanumeric and between 5 to 20 characters")
     private String userName;
 
