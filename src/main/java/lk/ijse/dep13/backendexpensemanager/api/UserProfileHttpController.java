@@ -1,24 +1,27 @@
 package lk.ijse.dep13.backendexpensemanager.api;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserRegisterDTO;
 import lk.ijse.dep13.backendexpensemanager.dto.UserUpdateDTO;
 import lk.ijse.dep13.backendexpensemanager.service.ProfileActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
+@Validated
 public class UserProfileHttpController {
 
     @Autowired
     ProfileActivityService profileActivityService;
 
     @PostMapping(consumes = "application/json")
-    public ResponseEntity<String> signup(@RequestBody UserRegisterDTO userRegisterDTO, HttpServletRequest request) {
+    public ResponseEntity<String> signup(@RequestBody @Valid UserRegisterDTO userRegisterDTO, HttpServletRequest request) {
         return profileActivityService.createAccount(userRegisterDTO);
     }
 
