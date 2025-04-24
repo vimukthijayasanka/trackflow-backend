@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@Validated
 public class IncomeExpenseService {
     @Autowired
     private IncomeExpenseRepo incomeExpenseRepo;
@@ -100,12 +102,8 @@ public class IncomeExpenseService {
     }
 
     public IncomeExpenseInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
-        IncomeExpense incomeExpense = incomeExpenseRepo.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found"));
-
-        if (!incomeExpense.getUserName().equals(updateDTO.getUserName())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You are not allowed to update this record");
-        }
+        IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, updateDTO.getUserName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found or access denied"));
 
         if (updateDTO.getType() != null) {
             incomeExpense.setType(updateDTO.getType());
