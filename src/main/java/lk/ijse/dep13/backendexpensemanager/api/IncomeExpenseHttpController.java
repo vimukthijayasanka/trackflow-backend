@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/transactions")
 @Validated
+@CrossOrigin
 public class IncomeExpenseHttpController {
 
     @Autowired

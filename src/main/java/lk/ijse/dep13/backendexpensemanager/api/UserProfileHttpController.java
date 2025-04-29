@@ -12,9 +12,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/user")
 @Validated
+@CrossOrigin
 public class UserProfileHttpController {
 
     @Autowired

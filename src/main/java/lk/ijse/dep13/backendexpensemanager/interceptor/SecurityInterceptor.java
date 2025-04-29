@@ -10,6 +10,10 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class SecurityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            return true;
+        }
+
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You are not logged in");
