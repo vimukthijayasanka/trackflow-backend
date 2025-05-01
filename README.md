@@ -7,11 +7,16 @@ A simple RESTful API for tracking income and expenses, built with **Spring**. Th
 ## 🚀 Features
 
 - 🔐 User authentication (login/logout)
-- ➕ Add new income/expense records
-- 📄 Fetch all or individual records
-- ♻️ Update existing transactions
-- ❌ Delete income/expense entries
+- 👤 User registration and profile updates
+- 🖼️ Profile picture upload with GCP bucket integration
+- 🧾 Add, update, delete income/expense records
+- 📄 Fetch all or specific records
 - 📦 RESTful API structure with JSON payloads
+- 🗃️ Session-based user context handling
+- 📊 Audit logging for actions 
+- ☁️ Cloud file upload support (GCP)
+- 💾 Daily backup service 
+- 🧪 Unit & integration testing 
 
 ---
 
@@ -20,7 +25,8 @@ A simple RESTful API for tracking income and expenses, built with **Spring**. Th
 - Java 22+
 - Spring Web MVC 3.2.5
 - Maven
-- POSTGRESQL database
+- PostgreSQL database
+- Google Cloud Storage (for file uploads)
 - Postman for testing
 
 ---
@@ -32,10 +38,14 @@ src/
 ├── main/
 │   ├── java/
 │   │   └── lk/ijse/dep13/backendexpensemanager/
-│   │       ├── api/               # REST controllers
-│   │       ├── model/             # Entity classes (User, IncomeExpense)
-│   │       ├── service/           # Business logic layer (to be added)
-│   │       ├── repository/        # Data access layer (to be added)
+│   │       ├── controller/        # REST controllers
+│   │       ├── entity/            # Entity classes (User, IncomeExpense)
+│   │       ├── dto/               # Data Transfer Objects
+│   │       ├── enums/             # Enums for Type safety
+│   │       ├── exception/         # Exception Handlers 
+│   │       ├── interceptor/       # Interceptors
+│   │       ├── service/           # Business logic layer 
+│   │       ├── repository/        # Data access layer 
 │   │       ├── WebAppConfig.java  # Spring configuration
 │   │       ├── WebAppInitializer.java
 │   │       └── WebRootConfig.java
@@ -74,11 +84,10 @@ src/
 ```json
 {
   "id": "tx123",
-  "type": "expense",
+  "type": "EXPENSE",
   "description": "food",
   "amount": 1500.00,
-  "date": "2025-04-06",
-  "time" : "18.05.45"
+  "date": "2025-04-06"
 }
 ```
 
@@ -113,14 +122,6 @@ mvn spring-boot:run
 ```
 http://localhost:8080
 ```
-
----
-
-## ✅ To Do
-
-- [ ] Connect to POSTGRESQL
-- [ ] Implement JWT authentication
-- [ ] Create unit tests
 
 ---
 
