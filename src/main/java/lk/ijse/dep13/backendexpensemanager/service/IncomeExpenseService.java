@@ -90,6 +90,7 @@ public class IncomeExpenseService {
 
         return incomeExpenses.stream().map(incomeExpense -> {
            IncomeExpenseInfoDTO dto = new IncomeExpenseInfoDTO();
+           dto.setId((long) incomeExpense.getId());
            dto.setUserName(incomeExpense.getUserName());
            dto.setType(incomeExpense.getType());
            dto.setDescription(incomeExpense.getDescription());
