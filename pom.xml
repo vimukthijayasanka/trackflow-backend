@@ -6,7 +6,7 @@
 
     <groupId>lk.ijse.dep13</groupId>
     <artifactId>backend-expense-manager</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>backend-expense-manager</name>
     <packaging>war</packaging>
 
