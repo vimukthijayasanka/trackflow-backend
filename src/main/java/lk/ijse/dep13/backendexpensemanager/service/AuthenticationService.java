@@ -2,6 +2,7 @@ package lk.ijse.dep13.backendexpensemanager.service;
 
 import jakarta.servlet.http.HttpSession;
 import lk.ijse.dep13.backendexpensemanager.dto.UserLoginDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.UserLoginResponse;
 import lk.ijse.dep13.backendexpensemanager.entity.User;
 import lk.ijse.dep13.backendexpensemanager.enums.AuditAction;
 import lk.ijse.dep13.backendexpensemanager.enums.AuditLogCategory;
@@ -23,7 +24,7 @@ public class AuthenticationService {
     @Autowired
     private AuditLogService auditLogService;
 
-    public UserLoginDTO login(UserLoginDTO userLogin){
+    public String login(UserLoginDTO userLogin){
         User user = userRepo.findByUserName(userLogin.getUserName()).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password"));
 
         String hashedInputPassword = DigestUtils.sha256Hex(userLogin.getPassword());
@@ -40,7 +41,7 @@ public class AuthenticationService {
                 "NULL",
                 user.getUserName() + " logged in at " + LocalDateTime.now()
         );
-        return userLogin;
+        return userLogin.getUserName();
     }
 
     public void logout(String userName, HttpSession session) {

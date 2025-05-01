@@ -3,6 +3,7 @@ package lk.ijse.dep13.backendexpensemanager.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lk.ijse.dep13.backendexpensemanager.dto.UserLoginDTO;
+import lk.ijse.dep13.backendexpensemanager.dto.UserLoginResponse;
 import lk.ijse.dep13.backendexpensemanager.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,10 @@ public class UserAuthenticationHttpController {
     AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public UserLoginDTO login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
-        UserLoginDTO user = authenticationService.login(userLoginDTO);
-        request.getSession().setAttribute("user", user.getUserName()); // created Session for User
-        return user;
+    public UserLoginResponse login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request) {
+        String userName = authenticationService.login(userLoginDTO);
+        request.getSession().setAttribute("user", userName); // created Session for User
+        return new UserLoginResponse(HttpStatus.OK, "Login successful");
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
