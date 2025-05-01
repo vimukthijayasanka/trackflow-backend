@@ -1,4 +1,4 @@
-package lk.ijse.dep13.backendexpensemanager.api;
+package lk.ijse.dep13.backendexpensemanager.controller;
 
 import jakarta.validation.Valid;
 import lk.ijse.dep13.backendexpensemanager.dto.IncomeExpenseInfoDTO;
