@@ -13,8 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IncomeExpenseUpdateDTO {
-    @NotBlank(message = "Username is required")
-    private String userName;
     private TransactionType type;
     private String description;
     private BigDecimal amount;

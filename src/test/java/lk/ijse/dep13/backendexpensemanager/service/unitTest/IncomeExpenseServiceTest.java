@@ -95,13 +95,10 @@ public class IncomeExpenseServiceTest {
 
         IncomeExpenseInfoDTO expectedDTO = new IncomeExpenseInfoDTO(
                 (long) id,
-                username,
                 TransactionType.INCOME,
                 "Salary",
                 new BigDecimal("100000.00"),
-                LocalDate.now(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
+                LocalDate.now()
         );
 
         //Act
@@ -110,7 +107,6 @@ public class IncomeExpenseServiceTest {
         // Assert
         assertNotNull(result);
         assertEquals(expectedDTO.getId(), result.getId());
-        assertEquals(expectedDTO.getUserName(), result.getUserName());
         assertEquals(expectedDTO.getType(), result.getType());
         assertEquals(expectedDTO.getDescription(), result.getDescription());
         assertEquals(expectedDTO.getAmount(), result.getAmount());
@@ -186,7 +182,6 @@ public class IncomeExpenseServiceTest {
         existingIncomeExpense.setUpdatedAt(LocalDateTime.now().minusDays(5));
 
         IncomeExpenseUpdateDTO updateDTO = new IncomeExpenseUpdateDTO(
-                username,
                 TransactionType.EXPENSE,
                 "New Laptop",
                 new BigDecimal("500000.00"),
@@ -197,11 +192,10 @@ public class IncomeExpenseServiceTest {
         when(incomeExpenseRepo.save(any(IncomeExpense.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         // Act
-        IncomeExpenseInfoDTO result = incomeExpenseService.updateIncomeExpense((long)id, updateDTO);
+        IncomeExpenseInfoDTO result = incomeExpenseService.updateIncomeExpense((long)id,username, updateDTO);
 
         // Assert
         assertNotNull(result);
-        assertEquals(username, result.getUserName());
         assertEquals(TransactionType.EXPENSE, result.getType());
         assertEquals("New Laptop", result.getDescription());
         assertEquals(new BigDecimal("500000.00"), result.getAmount());

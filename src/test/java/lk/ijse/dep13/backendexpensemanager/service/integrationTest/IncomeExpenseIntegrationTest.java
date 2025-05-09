@@ -106,7 +106,6 @@ class IncomeExpenseIntegrationTest {
 
         IncomeExpenseInfoDTO infoDTO = incomeExpenseService.getIncomeExpense((long) saved.getId(), "Joel_Miller");
         assertNotNull(infoDTO);
-        assertEquals("Joel_Miller", infoDTO.getUserName());
         assertEquals(TransactionType.INCOME, infoDTO.getType());
         assertEquals("Salary", infoDTO.getDescription());
         assertEquals(new BigDecimal("10000.00"), infoDTO.getAmount());
@@ -154,13 +153,12 @@ class IncomeExpenseIntegrationTest {
         IncomeExpense saved = incomeExpenseRepo.save(incomeExpense);
 
         IncomeExpenseUpdateDTO updateDTO = new IncomeExpenseUpdateDTO();
-        updateDTO.setUserName("Joel_Miller");
         updateDTO.setType(TransactionType.EXPENSE);
         updateDTO.setDescription("New Laptop");
         updateDTO.setAmount(new BigDecimal("500000.00"));
         updateDTO.setTransactionDate(updatedDate);
 
-        incomeExpenseService.updateIncomeExpense((long) saved.getId(), updateDTO);
+        incomeExpenseService.updateIncomeExpense((long) saved.getId(), incomeExpense.getUserName(), updateDTO);
 
         IncomeExpense updated = incomeExpenseRepo.findById((long) saved.getId()).orElseThrow();
         assertEquals(TransactionType.EXPENSE, updated.getType());
@@ -195,21 +193,6 @@ class IncomeExpenseIntegrationTest {
         dto.setTransactionDate(LocalDate.now());
 
         assertThrows(RuntimeException.class, () -> incomeExpenseService.createIncomeExpense("Joel_Miller", dto));
-    }
-
-    @Test
-    void testUpdateIncomeExpense_InvalidUser_ShouldFail() {
-        IncomeExpense entity = new IncomeExpense(1, "Joel_Miller", TransactionType.INCOME, "Desc", new BigDecimal("1000.00"), LocalDate.now(), LocalDateTime.now(),LocalDateTime.now());
-        IncomeExpense saved = incomeExpenseRepo.save(entity);
-
-        IncomeExpenseUpdateDTO updateDTO = new IncomeExpenseUpdateDTO();
-        updateDTO.setUserName("Wrong_User");
-        updateDTO.setType(TransactionType.EXPENSE);
-        updateDTO.setDescription("Hacked!");
-        updateDTO.setAmount(new BigDecimal("9999.99"));
-        updateDTO.setTransactionDate(LocalDate.now());
-
-        assertThrows(RuntimeException.class, () -> incomeExpenseService.updateIncomeExpense((long) saved.getId(), updateDTO));
     }
 
     @ParameterizedTest

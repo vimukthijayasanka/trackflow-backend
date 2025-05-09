@@ -37,8 +37,8 @@ public class IncomeExpenseHttpController {
     }
 
     @PatchMapping(value = "/{id}", consumes = "application/json")
-    public IncomeExpenseInfoDTO updateIncomeExpense(@PathVariable("id") Long id, @Valid @RequestBody IncomeExpenseUpdateDTO updateDTO) {
-        return incomeExpenseService.updateIncomeExpense(id, updateDTO);
+    public IncomeExpenseInfoDTO updateIncomeExpense(@PathVariable("id") Long id, @SessionAttribute(value="user")String userName, @Valid @RequestBody IncomeExpenseUpdateDTO updateDTO) {
+        return incomeExpenseService.updateIncomeExpense(id,userName, updateDTO);
     }
 
     @DeleteMapping("/{id}")

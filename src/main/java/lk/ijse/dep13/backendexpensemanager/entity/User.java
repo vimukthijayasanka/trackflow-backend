@@ -5,11 +5,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lk.ijse.dep13.backendexpensemanager.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.processing.SQL;
 
 import java.time.LocalDate;
 
@@ -20,20 +18,23 @@ import java.time.LocalDate;
 @Table (name = "user")
 public class User{
     @Id
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     @Column(name = "profile_picture_url")

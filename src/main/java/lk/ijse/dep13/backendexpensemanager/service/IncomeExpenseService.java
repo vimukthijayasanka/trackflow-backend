@@ -66,13 +66,10 @@ public class IncomeExpenseService {
 
         return new IncomeExpenseInfoDTO(
             id,
-            incomeExpense.getUserName(),
             incomeExpense.getType(),
             incomeExpense.getDescription(),
             incomeExpense.getAmount(),
-            incomeExpense.getTransactionDate(),
-            incomeExpense.getCreatedAt(),
-            incomeExpense.getUpdatedAt()
+            incomeExpense.getTransactionDate()
         );
     }
 
@@ -91,19 +88,16 @@ public class IncomeExpenseService {
         return incomeExpenses.stream().map(incomeExpense -> {
            IncomeExpenseInfoDTO dto = new IncomeExpenseInfoDTO();
            dto.setId((long) incomeExpense.getId());
-           dto.setUserName(incomeExpense.getUserName());
            dto.setType(incomeExpense.getType());
            dto.setDescription(incomeExpense.getDescription());
            dto.setAmount(incomeExpense.getAmount());
            dto.setTransactionDate(incomeExpense.getTransactionDate());
-           dto.setCreatedAt(incomeExpense.getCreatedAt());
-           dto.setUpdatedAt(incomeExpense.getUpdatedAt());
            return dto;
         }).toList();
     }
 
-    public IncomeExpenseInfoDTO updateIncomeExpense(Long id, IncomeExpenseUpdateDTO updateDTO) {
-        IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, updateDTO.getUserName())
+    public IncomeExpenseInfoDTO updateIncomeExpense(Long id, String userName, IncomeExpenseUpdateDTO updateDTO) {
+        IncomeExpense incomeExpense = incomeExpenseRepo.findByIdAndUserName(id, userName)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found or access denied"));
 
         if (updateDTO.getType() != null) {
@@ -133,13 +127,10 @@ public class IncomeExpenseService {
 
         return new IncomeExpenseInfoDTO(
                 (long) incomeExpense.getId(),
-                incomeExpense.getUserName(),
                 incomeExpense.getType(),
                 incomeExpense.getDescription(),
                 incomeExpense.getAmount(),
-                incomeExpense.getTransactionDate(),
-                incomeExpense.getCreatedAt(),
-                incomeExpense.getUpdatedAt()
+                incomeExpense.getTransactionDate()
         );
     }
 

@@ -14,11 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class IncomeExpenseInfoDTO {
     private Long id;
-    private String userName;
     private TransactionType type;
     private String description;
     private BigDecimal amount;
     private LocalDate transactionDate;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }
