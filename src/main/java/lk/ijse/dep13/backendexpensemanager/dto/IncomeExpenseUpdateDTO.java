@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IncomeExpenseUpdateDTO {
+    private Long id;
     private TransactionType type;
     private String description;
     private BigDecimal amount;

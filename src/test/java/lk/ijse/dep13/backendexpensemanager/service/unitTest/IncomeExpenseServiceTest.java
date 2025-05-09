@@ -182,6 +182,7 @@ public class IncomeExpenseServiceTest {
         existingIncomeExpense.setUpdatedAt(LocalDateTime.now().minusDays(5));
 
         IncomeExpenseUpdateDTO updateDTO = new IncomeExpenseUpdateDTO(
+                (long) 1,
                 TransactionType.EXPENSE,
                 "New Laptop",
                 new BigDecimal("500000.00"),

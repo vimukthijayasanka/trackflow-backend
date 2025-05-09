@@ -33,16 +33,17 @@ public class GCSUploaderService {
 
         // Generate unique file name
         String extension = getFileExtension(file.getOriginalFilename());
-        String uniqueName = UUID.randomUUID() + "_" + userName + (extension.isEmpty() ? "" : "." + extension);
+        String fileName = UUID.randomUUID() + "_" + userName + (extension.isEmpty() ? "" : "." + extension);
+        String objectName = "profile-pictures/" + fileName;
 
         // Create blob info
-        BlobId blobId = BlobId.of(bucketName, uniqueName);
+        BlobId blobId = BlobId.of(bucketName, objectName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(file.getContentType()).build();
         // upload new image
         storage.create(blobInfo, file.getBytes());
         // Make it public
         storage.createAcl(blobId, Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
-        return String.format("https://storage.googleapis.com/%s/%s", bucketName, uniqueName);
+        return String.format("https://storage.googleapis.com/%s/%s", bucketName, objectName);
     }
 
     private void deletePreviousImage(String previousImageUrl) {
