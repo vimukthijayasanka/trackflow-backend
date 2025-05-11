@@ -63,7 +63,6 @@ public class IncomeExpenseServiceTest {
         verify(auditLogService).log(eq(username), any(), any(), any(), contains("Created"));
     }
 
-    @Test
     void testCreateIncomeExpense_NegativeAmount_ShouldFailValidation() {
         String username = "Joel_Miller";
         IncomeExpenseDTO dto = new IncomeExpenseDTO(

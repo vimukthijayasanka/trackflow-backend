@@ -746,3 +746,407 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "updated_at" cannot 
 2025-05-11T14:29:07.565+05:30  WARN 33078 --- [TrackFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2025-05-11T14:29:07.797+05:30  INFO 33078 --- [TrackFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/app'
 2025-05-11T14:29:07.801+05:30  INFO 33078 --- [TrackFlow] [main] l.i.d.b.BackendExpenseManagerApplication : Started BackendExpenseManagerApplication in 2.355 seconds (process running for 2.627)
+2025-05-11T15:01:22.083+05:30  INFO 36053 --- [TrackFlow] [main] l.i.d.b.BackendExpenseManagerApplication : Starting BackendExpenseManagerApplication vv1.0.0 using Java 22.0.2 with PID 36053 (/home/vimukthi-jayasanka/Documents/dep-13/practice/expense-manager/backend/backend-expense-manager/target/classes started by vimukthi-jayasanka in /home/vimukthi-jayasanka/Documents/dep-13/practice/expense-manager/backend/backend-expense-manager)
+2025-05-11T15:01:22.084+05:30  INFO 36053 --- [TrackFlow] [main] l.i.d.b.BackendExpenseManagerApplication : No active profile set, falling back to 1 default profile: "default"
+2025-05-11T15:01:22.334+05:30  INFO 36053 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-11T15:01:22.362+05:30  INFO 36053 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 3 JPA repository interfaces.
+2025-05-11T15:01:22.760+05:30  INFO 36053 --- [TrackFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-11T15:01:22.766+05:30  INFO 36053 --- [TrackFlow] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-11T15:01:22.766+05:30  INFO 36053 --- [TrackFlow] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-11T15:01:22.790+05:30  INFO 36053 --- [TrackFlow] [main] o.a.c.c.C.[Tomcat].[localhost].[/app]    : Initializing Spring embedded WebApplicationContext
+2025-05-11T15:01:22.790+05:30  INFO 36053 --- [TrackFlow] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 687 ms
+2025-05-11T15:01:22.810+05:30 DEBUG 36053 --- [TrackFlow] [main] o.s.w.multipart.support.MultipartFilter  : Filter 'multipartFilter' configured for use
+2025-05-11T15:01:22.860+05:30  INFO 36053 --- [TrackFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-11T15:01:22.881+05:30  INFO 36053 --- [TrackFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-11T15:01:22.894+05:30  INFO 36053 --- [TrackFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-11T15:01:23.024+05:30  INFO 36053 --- [TrackFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-11T15:01:23.038+05:30  INFO 36053 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:01:23.110+05:30  INFO 36053 --- [TrackFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3dded90a
+2025-05-11T15:01:23.111+05:30  INFO 36053 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:01:23.125+05:30  WARN 36053 --- [TrackFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-11T15:01:23.133+05:30  INFO 36053 --- [TrackFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-11T15:01:23.565+05:30  INFO 36053 --- [TrackFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-11T15:01:23.591+05:30  WARN 36053 --- [TrackFlow] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists "income_expense" alter column "create_at" set data type timestamp(6)" via JDBC [ERROR: column "create_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING create_at::timestamp(6) without time zone".]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists "income_expense" alter column "create_at" set data type timestamp(6)" via JDBC [ERROR: column "create_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING create_at::timestamp(6) without time zone".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1865) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1814) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at lk.ijse.dep13.backendexpensemanager.BackendExpenseManagerApplication.main(BackendExpenseManagerApplication.java:9) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "create_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING create_at::timestamp(6) without time zone".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.5.jar:42.7.5]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	... 37 common frames omitted
+
+2025-05-11T15:01:23.593+05:30  WARN 36053 --- [TrackFlow] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists "income_expense" alter column "transaction_date" set data type date" via JDBC [ERROR: column "transaction_date" cannot be cast automatically to type date
+  Hint: You might need to specify "USING transaction_date::date".]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists "income_expense" alter column "transaction_date" set data type date" via JDBC [ERROR: column "transaction_date" cannot be cast automatically to type date
+  Hint: You might need to specify "USING transaction_date::date".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1865) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1814) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at lk.ijse.dep13.backendexpensemanager.BackendExpenseManagerApplication.main(BackendExpenseManagerApplication.java:9) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "transaction_date" cannot be cast automatically to type date
+  Hint: You might need to specify "USING transaction_date::date".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.5.jar:42.7.5]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	... 37 common frames omitted
+
+2025-05-11T15:01:23.594+05:30  WARN 36053 --- [TrackFlow] [main] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists "income_expense" alter column "updated_at" set data type timestamp(6)" via JDBC [ERROR: column "updated_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING updated_at::timestamp(6) without time zone".]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists "income_expense" alter column "updated_at" set data type timestamp(6)" via JDBC [ERROR: column "updated_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING updated_at::timestamp(6) without time zone".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1865) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1814) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.6.jar:6.2.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362) ~[spring-boot-3.4.5.jar:3.4.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351) ~[spring-boot-3.4.5.jar:3.4.5]
+	at lk.ijse.dep13.backendexpensemanager.BackendExpenseManagerApplication.main(BackendExpenseManagerApplication.java:9) ~[classes/:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: column "updated_at" cannot be cast automatically to type timestamp without time zone
+  Hint: You might need to specify "USING updated_at::timestamp(6) without time zone".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317) ~[postgresql-42.7.5.jar:42.7.5]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312) ~[postgresql-42.7.5.jar:42.7.5]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80) ~[hibernate-core-6.6.13.Final.jar:6.6.13.Final]
+	... 37 common frames omitted
+
+2025-05-11T15:01:23.595+05:30  INFO 36053 --- [TrackFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T15:01:23.946+05:30  WARN 36053 --- [TrackFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-11T15:01:24.174+05:30  INFO 36053 --- [TrackFlow] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/app'
+2025-05-11T15:01:24.178+05:30  INFO 36053 --- [TrackFlow] [main] l.i.d.b.BackendExpenseManagerApplication : Started BackendExpenseManagerApplication in 2.312 seconds (process running for 2.636)
+2025-05-11T15:02:05.933+05:30  INFO 36340 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : Starting IncomeExpenseIntegrationTest vv1.0.0 using Java 22.0.2 with PID 36340 (started by vimukthi-jayasanka in /home/vimukthi-jayasanka/Documents/dep-13/practice/expense-manager/backend/backend-expense-manager)
+2025-05-11T15:02:05.933+05:30  INFO 36340 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : The following 1 profile is active: "test"
+2025-05-11T15:02:06.183+05:30  INFO 36340 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-11T15:02:06.206+05:30  INFO 36340 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 18 ms. Found 3 JPA repository interfaces.
+2025-05-11T15:02:06.614+05:30  INFO 36340 --- [TrackFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-11T15:02:06.636+05:30  INFO 36340 --- [TrackFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-11T15:02:06.651+05:30  INFO 36340 --- [TrackFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-11T15:02:06.791+05:30  INFO 36340 --- [TrackFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-11T15:02:06.805+05:30  INFO 36340 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:02:06.903+05:30  INFO 36340 --- [TrackFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-05-11T15:02:06.905+05:30  INFO 36340 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:02:06.917+05:30  WARN 36340 --- [TrackFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-11T15:02:06.927+05:30  INFO 36340 --- [TrackFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-11T15:02:07.396+05:30  INFO 36340 --- [TrackFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-11T15:02:07.403+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "AuditLog" cascade 
+2025-05-11T15:02:07.406+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "income_expense" cascade 
+2025-05-11T15:02:07.406+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "user" cascade 
+2025-05-11T15:02:07.409+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "AuditLog" ("id" bigint generated by default as identity, "timestamp" timestamp(6), "details" varchar(255), "targetId" varchar(255), "userName" varchar(255), "action" enum ('BACKUP','CREATE','DELETE','LOGIN','LOGOUT','PASSWORD_RESET','PASSWORD_UPDATE','READ','RESTORE','UPDATE'), "category" enum ('AUTH','BACKUP','SETTINGS','TRANSACTION','USER_PROFILE'), primary key ("id"))
+2025-05-11T15:02:07.414+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "income_expense" ("amount" numeric(38,2) not null, "id" integer generated by default as identity, "transaction_date" date, "create_at" timestamp(6), "updated_at" timestamp(6), "description" varchar(255), "user_name" varchar(255), "type" enum ('EXPENSE','INCOME') not null, primary key ("id"))
+2025-05-11T15:02:07.415+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "user" ("dob" date not null, "email" varchar(255) not null, "first_name" varchar(255) not null, "last_name" varchar(255) not null, "password" varchar(255) not null, "profile_picture_url" varchar(255), "user_name" varchar(255) not null, primary key ("user_name"))
+2025-05-11T15:02:07.418+05:30  INFO 36340 --- [TrackFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T15:02:07.848+05:30  WARN 36340 --- [TrackFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-11T15:02:08.098+05:30  INFO 36340 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : Started IncomeExpenseIntegrationTest in 2.358 seconds (process running for 2.901)
+2025-05-11T15:02:08.185+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.244+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.248+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.302+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:02:08.305+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.311+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.314+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.356+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.365+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.366+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.367+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.371+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.374+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.375+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.381+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.382+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.382+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.383+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.384+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.385+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.386+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.390+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.392+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.392+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.393+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.394+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.395+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.396+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.400+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.402+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.402+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.404+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:02:08.405+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.409+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : delete from "income_expense" where "id"=?
+2025-05-11T15:02:08.410+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.411+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.415+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.417+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.417+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.419+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:02:08.421+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.426+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : update "income_expense" set "amount"=?,"description"=?,"transaction_date"=?,"type"=?,"updated_at"=?,"user_name"=? where "id"=?
+2025-05-11T15:02:08.428+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.429+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.434+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.435+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.436+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.437+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.438+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.439+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.440+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.445+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.446+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.446+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.447+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.450+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."user_name"=?
+2025-05-11T15:02:08.451+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.452+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.454+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.458+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:02:08.460+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:02:08.461+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:02:08.462+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:02:08.465+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:02:08.466+05:30 DEBUG 36340 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:02:08.701+05:30  INFO 36340 --- [TrackFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T15:02:08.702+05:30 DEBUG 36340 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "AuditLog" cascade 
+2025-05-11T15:02:08.703+05:30 DEBUG 36340 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "income_expense" cascade 
+2025-05-11T15:02:08.703+05:30 DEBUG 36340 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "user" cascade 
+2025-05-11T15:02:08.705+05:30  INFO 36340 --- [TrackFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:02:08.706+05:30  INFO 36340 --- [TrackFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-11T15:03:13.187+05:30  INFO 36654 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : Starting IncomeExpenseIntegrationTest vv1.0.0 using Java 22.0.2 with PID 36654 (started by vimukthi-jayasanka in /home/vimukthi-jayasanka/Documents/dep-13/practice/expense-manager/backend/backend-expense-manager)
+2025-05-11T15:03:13.188+05:30  INFO 36654 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : The following 1 profile is active: "test"
+2025-05-11T15:03:13.458+05:30  INFO 36654 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-11T15:03:13.485+05:30  INFO 36654 --- [TrackFlow] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21 ms. Found 3 JPA repository interfaces.
+2025-05-11T15:03:13.929+05:30  INFO 36654 --- [TrackFlow] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-11T15:03:13.952+05:30  INFO 36654 --- [TrackFlow] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-11T15:03:13.967+05:30  INFO 36654 --- [TrackFlow] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-11T15:03:14.097+05:30  INFO 36654 --- [TrackFlow] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-11T15:03:14.112+05:30  INFO 36654 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-11T15:03:14.219+05:30  INFO 36654 --- [TrackFlow] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-05-11T15:03:14.220+05:30  INFO 36654 --- [TrackFlow] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-11T15:03:14.233+05:30  WARN 36654 --- [TrackFlow] [main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-11T15:03:14.245+05:30  INFO 36654 --- [TrackFlow] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-11T15:03:14.695+05:30  INFO 36654 --- [TrackFlow] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-11T15:03:14.707+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "AuditLog" cascade 
+2025-05-11T15:03:14.709+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "income_expense" cascade 
+2025-05-11T15:03:14.710+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : drop table if exists "user" cascade 
+2025-05-11T15:03:14.712+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "AuditLog" ("id" bigint generated by default as identity, "timestamp" timestamp(6), "details" varchar(255), "targetId" varchar(255), "userName" varchar(255), "action" enum ('BACKUP','CREATE','DELETE','LOGIN','LOGOUT','PASSWORD_RESET','PASSWORD_UPDATE','READ','RESTORE','UPDATE'), "category" enum ('AUTH','BACKUP','SETTINGS','TRANSACTION','USER_PROFILE'), primary key ("id"))
+2025-05-11T15:03:14.718+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "income_expense" ("amount" numeric(38,2) not null, "id" integer generated by default as identity, "transaction_date" date, "create_at" timestamp(6), "updated_at" timestamp(6), "description" varchar(255), "user_name" varchar(255), "type" enum ('EXPENSE','INCOME') not null, primary key ("id"))
+2025-05-11T15:03:14.719+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : create table "user" ("dob" date not null, "email" varchar(255) not null, "first_name" varchar(255) not null, "last_name" varchar(255) not null, "password" varchar(255) not null, "profile_picture_url" varchar(255), "user_name" varchar(255) not null, primary key ("user_name"))
+2025-05-11T15:03:14.722+05:30  INFO 36654 --- [TrackFlow] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T15:03:15.134+05:30  WARN 36654 --- [TrackFlow] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-11T15:03:15.376+05:30  INFO 36654 --- [TrackFlow] [main] l.i.d.b.s.i.IncomeExpenseIntegrationTest : Started IncomeExpenseIntegrationTest in 2.386 seconds (process running for 2.929)
+2025-05-11T15:03:15.476+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.526+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.529+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.587+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:03:15.589+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.595+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.598+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.625+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.633+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.634+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.635+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.639+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.641+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.642+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.647+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.648+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.649+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.650+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.651+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.652+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.653+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.658+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.660+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.661+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.662+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.663+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.664+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.665+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.669+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.671+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.671+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.673+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:03:15.674+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.678+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : delete from "income_expense" where "id"=?
+2025-05-11T15:03:15.679+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.680+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.684+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.685+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.686+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.688+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."id"=? and ie1_0."user_name"=?
+2025-05-11T15:03:15.689+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.694+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : update "income_expense" set "amount"=?,"description"=?,"transaction_date"=?,"type"=?,"updated_at"=?,"user_name"=? where "id"=?
+2025-05-11T15:03:15.696+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.697+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.702+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.703+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.703+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.704+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.705+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.707+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.707+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.711+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0 where u1_0."user_name"=?
+2025-05-11T15:03:15.712+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "user" ("dob","email","first_name","last_name","password","profile_picture_url","user_name") values (?,?,?,?,?,?,?)
+2025-05-11T15:03:15.713+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.714+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "income_expense" ("amount","create_at","description","transaction_date","type","updated_at","user_name","id") values (?,?,?,?,?,?,?,default)
+2025-05-11T15:03:15.715+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0 where ie1_0."user_name"=?
+2025-05-11T15:03:15.717+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : insert into "AuditLog" ("action","category","details","targetId","timestamp","userName","id") values (?,?,?,?,?,?,default)
+2025-05-11T15:03:15.719+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select ie1_0."id",ie1_0."amount",ie1_0."create_at",ie1_0."description",ie1_0."transaction_date",ie1_0."type",ie1_0."updated_at",ie1_0."user_name" from "income_expense" ie1_0
+2025-05-11T15:03:15.720+05:30 DEBUG 36654 --- [TrackFlow] [main] org.hibernate.SQL                        : select u1_0."user_name",u1_0."dob",u1_0."email",u1_0."first_name",u1_0."last_name",u1_0."password",u1_0."profile_picture_url" from "user" u1_0
+2025-05-11T15:03:15.936+05:30  INFO 36654 --- [TrackFlow] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-11T15:03:15.937+05:30 DEBUG 36654 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "AuditLog" cascade 
+2025-05-11T15:03:15.938+05:30 DEBUG 36654 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "income_expense" cascade 
+2025-05-11T15:03:15.939+05:30 DEBUG 36654 --- [TrackFlow] [SpringApplicationShutdownHook] org.hibernate.SQL                        : drop table if exists "user" cascade 
+2025-05-11T15:03:15.940+05:30  INFO 36654 --- [TrackFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-11T15:03:15.942+05:30  INFO 36654 --- [TrackFlow] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

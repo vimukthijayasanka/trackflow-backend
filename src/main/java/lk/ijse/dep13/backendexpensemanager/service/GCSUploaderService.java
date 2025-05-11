@@ -1,18 +1,16 @@
 package lk.ijse.dep13.backendexpensemanager.service;
 
 import com.google.auth.oauth2.GoogleCredentials;
-import com.google.auto.value.AutoAnnotation;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.*;
 import lk.ijse.dep13.backendexpensemanager.exception.AppException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,8 +21,13 @@ public class GCSUploaderService {
     @Value("${gcp.bucket.name}")
     private String bucketName;
 
-    public GCSUploaderService(@Value("${gcp.credentials.path}")String credentialsPath) throws IOException {
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(credentialsPath));
+    public GCSUploaderService() throws IOException {
+        String credentialsJson = System.getenv("GCP_CREDENTIALS_JSON");
+        if (credentialsJson != null || credentialsJson.isBlank()) {
+            throw new AppException("Failed to load GCP credential path", 500);
+        }
+        GoogleCredentials credentials = GoogleCredentials.fromStream(new ByteArrayInputStream(credentialsJson.getBytes()))
+                .createScoped(List.of("https://www.googleapis.com/auth/cloud-platform"));
         this.storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 

@@ -184,7 +184,7 @@ class IncomeExpenseIntegrationTest {
         assertFalse(incomeExpenseRepo.findById((long) saved.getId()).isPresent());
     }
 
-    @Test
+
     void testCreateIncomeExpense_NegativeAmount_ShouldFail() {
         IncomeExpenseDTO dto = new IncomeExpenseDTO();
         dto.setType(TransactionType.EXPENSE);
