@@ -1,32 +1,20 @@
 package lk.ijse.dep13.backendexpensemanager;
 
-import jakarta.servlet.MultipartConfigElement;
-import jakarta.servlet.Servlet;
-import jakarta.servlet.ServletRegistration;
 import lk.ijse.dep13.backendexpensemanager.interceptor.SecurityInterceptor;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.MultipartConfigFactory;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.unit.DataSize;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.MultipartFilter;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.sql.SQLException;
 
 @Configuration
 @ComponentScan
 public class WebAppConfig implements WebMvcConfigurer {
-
-    public WebAppConfig() throws SQLException {
-    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -50,15 +38,8 @@ public class WebAppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(DataSize.ofMegabytes(10));
-        factory.setMaxRequestSize(DataSize.ofMegabytes(15));
-        return factory.createMultipartConfig();
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
-    @Bean
-    public MultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
-    }
 }
