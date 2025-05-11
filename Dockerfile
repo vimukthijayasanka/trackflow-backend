@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-24 AS build
+FROM maven:3.9.9-eclipse-temurin-22 AS build
 COPY . .
 COPY pom.xml .
 COPY src ./src
