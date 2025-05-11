@@ -6,6 +6,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,5 +42,17 @@ public class GlobalExceptionHandler {
         body.put("details", ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(AppException.class)
+    public void handleAppWideException(AppException appException){
+        ResponseStatusException resExp;
+        if (appException.getErrorCode() == 404){
+            resExp = new ResponseStatusException(HttpStatus.NOT_FOUND, appException.getMessage());
+        } else{
+            resExp = new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, appException.getMessage());
+        }
+        appException.initCause(resExp);
+        throw resExp;
     }
 }
