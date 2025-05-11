@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table (name = "user")
-public class User{
+public class User implements SuperEntity {
     @Id
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;

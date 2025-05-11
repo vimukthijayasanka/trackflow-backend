@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "income_expense")
 @EntityListeners(AuditingEntityListener.class)
-public class IncomeExpense {
+public class IncomeExpense implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
