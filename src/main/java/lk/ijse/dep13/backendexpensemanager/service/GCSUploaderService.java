@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -21,13 +22,12 @@ public class GCSUploaderService {
     @Value("${gcp.bucket.name}")
     private String bucketName;
 
-    public GCSUploaderService() throws IOException {
-        String credentialsJson = System.getenv("GCP_CREDENTIALS_JSON");
-        System.out.println("GCP_CREDENTIALS_JSON=" + credentialsJson);
-        if (credentialsJson == null || credentialsJson.isBlank()) {
+    public GCSUploaderService(@Value("${gcp.credentials.path}") String GcsCredentialsPath) throws IOException {
+        File credentialsFile = new File(GcsCredentialsPath);
+        if (!credentialsFile.exists()) {
             throw new AppException("Failed to load GCP credential path", 500);
         }
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new ByteArrayInputStream(credentialsJson.getBytes()))
+        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(credentialsFile))
                 .createScoped(List.of("https://www.googleapis.com/auth/cloud-platform"));
         this.storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
