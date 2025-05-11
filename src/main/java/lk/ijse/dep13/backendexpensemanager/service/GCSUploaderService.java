@@ -23,6 +23,7 @@ public class GCSUploaderService {
 
     public GCSUploaderService() throws IOException {
         String credentialsJson = System.getenv("GCP_CREDENTIALS_JSON");
+        System.out.println("GCP_CREDENTIALS_JSON=" + credentialsJson);
         if (credentialsJson == null || credentialsJson.isBlank()) {
             throw new AppException("Failed to load GCP credential path", 500);
         }
