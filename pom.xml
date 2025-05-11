@@ -8,7 +8,7 @@
     <artifactId>backend-expense-manager</artifactId>
     <version>1.0.0</version>
     <name>backend-expense-manager</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
