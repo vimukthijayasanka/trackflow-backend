@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auto.value.AutoAnnotation;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.*;
+import lk.ijse.dep13.backendexpensemanager.exception.AppException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -42,11 +43,16 @@ public class GCSUploaderService {
         // Create blob info
         BlobId blobId = BlobId.of(bucketName, objectName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(file.getContentType()).build();
-        // upload new image
-        storage.create(blobInfo, file.getBytes());
-        // Make it public
-        storage.createAcl(blobId, Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
-        return String.format("https://storage.googleapis.com/%s/%s", bucketName, objectName);
+        try{
+            // upload new image
+            storage.create(blobInfo, file.getBytes());
+            // Make it public
+            storage.createAcl(blobId, Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER));
+            return String.format("https://storage.googleapis.com/%s/%s", bucketName, objectName);
+        }catch (IOException e){
+            throw new AppException("Failed to create the profile pic image",e, 500);
+        }
+
     }
 
     private void deletePreviousImage(String previousImageUrl) {
@@ -59,7 +65,7 @@ public class GCSUploaderService {
                 storage.delete(blobId);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new AppException("Failed to delete the image", e, 500);
         }
     }
 

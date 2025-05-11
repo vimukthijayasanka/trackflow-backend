@@ -45,7 +45,6 @@ public class ProfileActivityService {
                     user.getUserName(),
                     "Create the user - " + user.getUserName()
             );
-
             return ResponseEntity.status(HttpStatus.CREATED).body("Account created successfully");
         }
     }
