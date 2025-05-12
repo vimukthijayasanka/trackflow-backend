@@ -56,32 +56,4 @@ public class WebAppConfig implements WebMvcConfigurer {
             servletContext.getSessionCookieConfig().setPath("/");
         };
     }
-
-    @Bean
-    public FilterRegistrationBean<Filter> sameSiteFilter() {
-        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter((request, response, chain) -> {
-            chain.doFilter(request, response);
-            if (response instanceof HttpServletResponse) {
-                HttpServletResponse res = (HttpServletResponse) response;
-                Collection<String> headers = res.getHeaders("Set-Cookie");
-                boolean firstHeader = true;
-                for (String header : headers) {
-                    if (header.contains("JSESSIONID")) {
-                        String updatedHeader = header + "; SameSite=None; Secure";
-                        if (firstHeader) {
-                            res.setHeader("Set-Cookie", updatedHeader);
-                            firstHeader = false;
-                        } else {
-                            res.addHeader("Set-Cookie", updatedHeader);
-                        }
-                    }
-                }
-            }
-        });
-        return registrationBean;
-    }
-
-
-
 }
